@@ -90,6 +90,10 @@ public class Submission implements Comparable<Submission> {
         return name;
     }
 
+    public String getStudentName() {
+        return name.equals("bc") ? "bc" : name.split("-")[0];
+    }
+
     /**
      * @return Number of tokens in the parse result.
      */

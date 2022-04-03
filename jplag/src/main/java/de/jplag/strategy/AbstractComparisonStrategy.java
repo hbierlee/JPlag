@@ -38,6 +38,12 @@ public abstract class AbstractComparisonStrategy implements ComparisonStrategy {
      */
     protected Optional<JPlagComparison> compareSubmissions(Submission first, Submission second, boolean withBaseCode) {
         JPlagComparison comparison = greedyStringTiling.compare(first, second);
+        String first_student = first.getStudentName();
+        String second_student = second.getStudentName();
+
+        if (first_student.equals(second_student)) {
+          return Optional.empty();
+        }
         System.out.println("Comparing " + first.getName() + "-" + second.getName() + ": " + comparison.similarity());
 
         if (options.getSimilarityMetric().isAboveThreshold(comparison, options.getSimilarityThreshold())) {
