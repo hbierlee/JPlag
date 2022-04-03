@@ -581,8 +581,14 @@ public class Report { // Mostly legacy code with some minor improvements.
         htmlFile.println("<!---->");
     }
 
-    private void writeMatch(JPlagComparison comparison, int i) throws ReportGenerationException {
-        HTMLFile htmlFile = createHTMLFile("match" + i + ".html");
+    private String getMatchFilename(JPlagComparison comparison) {
+        String i = String.format("%05d", getComparisonIndex(comparison));
+        return "match_" + i + "_" + comparison.getFirstSubmission().getStudentName() + "_" + comparison.getSecondSubmission().getStudentName() + ".html";
+    }
+
+    private void writeMatch(JPlagComparison comparison) throws ReportGenerationException {
+        int i = getComparisonIndex(comparison);
+        HTMLFile htmlFile = createHTMLFile(getMatchFilename(comparison));
 
         writeHTMLHeader(htmlFile, TagParser.parse(msg.getString("Report.Matches_for_X1_AND_X2"),
                 new String[] {comparison.getFirstSubmission().getName(), comparison.getSecondSubmission().getName()}));
@@ -640,7 +646,7 @@ public class Report { // Mostly legacy code with some minor improvements.
     private void writeMatches(List<JPlagComparison> comparisons) {
         comparisons.parallelStream().forEach(comparison -> {
             try {
-                writeMatch(comparison, getComparisonIndex(comparison));
+                writeMatch(comparison);
             } catch (ExitException exception) {
                 exception.printStackTrace();
             }

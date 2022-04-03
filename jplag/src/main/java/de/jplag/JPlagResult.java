@@ -57,15 +57,6 @@ public class JPlagResult {
     }
 
     /**
-     * Drops elements from the comparison list to free memory. Note, that this affects the similarity distribution and is
-     * only meant to be used if you don't need the information about comparisons with lower match percentage anymore.
-     * @param limit the number of comparisons to keep in the list
-     */
-    public void dropComparisons(int limit) {
-        this.comparisons = this.getComparisons(limit);
-    }
-
-    /**
      * @return a list of all comparisons sorted by percentage (descending)
      */
     public List<JPlagComparison> getComparisons() {

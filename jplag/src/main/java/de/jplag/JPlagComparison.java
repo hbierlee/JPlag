@@ -120,8 +120,17 @@ public class JPlagComparison implements Comparator<JPlagComparison> { // FIXME T
     public final int getNumberOfMatchedTokens() {
         int numberOfMatchedTokens = 0;
 
-        for (Match match : matches) {
-            numberOfMatchedTokens += match.getLength();
+        boolean avg = true;
+        if (avg) {
+            for (Match match : matches) {
+                numberOfMatchedTokens += match.getLength();
+            }
+        } else {
+           Optional<Match> max = matches
+              .stream()
+              .max( (a,b) -> Integer.compare(a.getLength(), b.getLength()) );
+
+           numberOfMatchedTokens = max.isPresent() ? max.get().getLength() : 0;
         }
 
         return numberOfMatchedTokens;
@@ -248,7 +257,7 @@ public class JPlagComparison implements Comparator<JPlagComparison> { // FIXME T
 
     @Override
     public String toString() {
-        return firstSubmission.getName() + " <-> " + secondSubmission.getName();
+        return firstSubmission.getName() + " <-> " + secondSubmission.getName() + " [" + similarity() + "]";
     }
 
     private final float firstBasecodeSimilarity() {
