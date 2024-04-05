@@ -291,9 +291,7 @@ public class Report { // Mostly legacy code with some minor improvements.
             for (int fileIndex = 0; fileIndex < files.length; fileIndex++) {
                 if (start.file.equals(files[fileIndex]) && text[fileIndex] != null) {
                     String tmp = "<FONT color=\"" + Color.getHexadecimalValue(x) + "\">" + (j == 1 ? "<div style=\"position:absolute;left:0\">" : "")
-                            + "<A HREF=\"javascript:ZweiFrames('match" + i + "-" + (1 - j) + ".html#" + x + "'," + (3 - j) + ",'match" + i
-                            + "-top.html#" + x + "',1)\"><IMG SRC=\"" + PICS[j] + "\" ALT=\"other\" " + "BORDER=\"0\" ALIGN=\""
-                            + (j == 0 ? "right" : "left") + "\"></A>" + (j == 1 ? "</div>" : "") + "<B>";
+                            + (j == 1 ? "</div>" : "") + "<B>";
                     // position the icon and the beginning of the colorblock
                     markupList.put(new MarkupText(fileIndex, start.getLine() - 1, start.getColumn() - 1, tmp, true), null);
                     // mark the end
@@ -570,7 +568,7 @@ public class Report { // Mostly legacy code with some minor improvements.
                     + "</TD><TD><nobr>-&gt;</nobr>");
 
             htmlFile.print("</TD><TD BGCOLOR=" + color(comparison.similarityOfSecond(), 128, 192, 128, 192, 255, 255)
-                    + " ALIGN=center><A HREF=\"match" + getComparisonIndex(comparison) + ".html\">" + submissionNameB + "</A><BR><FONT COLOR=\""
+                    + " ALIGN=center><A HREF=\""+ getMatchFilename(comparison) + "\">" + submissionNameB + "</A><BR><FONT COLOR=\""
                     + color(comparison.similarity(), 0, 255, 0, 0, 0, 0) + "\">(" + (((int) (comparison.similarity() * 10)) / (float) 10)
                     + "%)</FONT>");
 
@@ -706,9 +704,7 @@ public class Report { // Mostly legacy code with some minor improvements.
             for (int y = 0; y < files.length; y++) {
                 if (start.file.equals(files[y]) && text[y] != null) {
                     hilf = "<FONT color=\"" + Color.getHexadecimalValue(x) + "\">" + (j == 1 ? "<div style=\"position:absolute;left:0\">" : "")
-                            + "<A HREF=\"javascript:ZweiFrames('match" + i + "-" + (1 - j) + ".html#" + x + "'," + (3 - j) + ",'match" + i
-                            + "-top.html#" + x + "',1)\"><IMG SRC=\"" + PICS[j] + "\" ALT=\"other\" " + "BORDER=\"0\" ALIGN=\""
-                            + (j == 0 ? "right" : "left") + "\"></A>" + (j == 1 ? "</div>" : "") + "<B>";
+                            + (j == 1 ? "</div>" : "") + "<B>";
                     // position the icon and the beginning of the colorblock
                     if (text[y][start.getLine() - 1].endsWith("</FONT>")) {
                         text[y][start.getLine() - 1] += hilf;

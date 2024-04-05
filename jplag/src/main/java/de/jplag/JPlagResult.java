@@ -4,6 +4,11 @@ import java.util.List;
 
 import de.jplag.options.JPlagOptions;
 
+import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 /**
  * Encapsulates the results of a comparison of a set of source code submissions.
  */
@@ -111,4 +116,24 @@ public class JPlagResult {
 
         return similarityDistribution;
     }
+
+    // public float[][] getDistanceMatrix() {
+    //   Set<String> set_of_students = new HashSet<>();
+    //   comparisons.forEach(c -> set_of_students.addAll(c.getStudentPair()));
+    //   List<String> students = new ArrayList<>(set_of_students);
+    //   Collections.sort(students);
+    //   System.out.print(students);
+    //   float[][] matrix = float[students.size()][students.size()];
+    //   for (int i = 0; i < students.size(); i++) {
+    //     for (int j = 0; j < students.size(); j++) {
+    //       if (students.get(i).equals(students.get(j))) {
+    //         dist[i][j]=0.0;
+    //       } else {
+    //         int k = comparisons.indexOf(
+    //       }
+    //     }
+    //   }
+    //   return matrix;
+    // }
+
 }
