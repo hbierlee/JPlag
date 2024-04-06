@@ -59,7 +59,10 @@ public class NormalComparisonStrategy extends AbstractComparisonStrategy {
             }
         }
 
-        return result;
+
+        List<JPlagComparison> comparisons = new ArrayList<JPlagComparison>(comp_map.values());
+        long durationInMillis = System.currentTimeMillis() - timeBeforeStartInMillis;
+        return new JPlagResult(comparisons, durationInMillis, comparisons.size(), options);
     }
 
 }
